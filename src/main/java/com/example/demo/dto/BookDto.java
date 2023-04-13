@@ -1,5 +1,7 @@
 package com.example.demo.dto;
 
+import java.util.List;
+
 public class BookDto {
 	
 	private Long id;
@@ -10,7 +12,7 @@ public class BookDto {
 	
 	private String author;
 	
-	private UserDto userData;
+	private List<UserDto> userDtos;
 
 	public Long getId() {
 		return id;
@@ -44,12 +46,12 @@ public class BookDto {
 		this.author = author;
 	}
 
-	public UserDto getUserData() {
-		return userData;
+	public List<UserDto> getUserDtos() {
+		return userDtos;
 	}
 
-	public void setUserData(UserDto userData) {
-		this.userData = userData;
+	public void setUserDtos(List<UserDto> userDtos) {
+		this.userDtos = userDtos;
 	}
 
 }

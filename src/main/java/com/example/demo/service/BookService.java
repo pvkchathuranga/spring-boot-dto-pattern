@@ -1,10 +1,12 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.Book;
 import com.example.demo.dto.BookDto;
+import com.example.demo.dto.commonModel.ResponseDto;
 
 public interface BookService {
 
-	BookDto convertBookToBookDto(Book book);
+	ResponseDto addBook(BookDto bookDto);
+
+	ResponseDto getAllBooks();
 
 }

@@ -12,7 +12,6 @@ import com.example.demo.dto.BookDto;
 import com.example.demo.dto.UserDto;
 import com.example.demo.dto.commonModel.ResponseDto;
 import com.example.demo.repository.UserReopsitory;
-import com.example.demo.service.BookService;
 import com.example.demo.service.UserService;
 
 @Service
@@ -20,9 +19,6 @@ public class UserServiceImpl implements UserService{
 
 	@Autowired
 	private UserReopsitory userReopsitory;
-	
-	@Autowired
-	private BookService bookService;
 	
 	@Override
 	public ResponseDto createUser(UserDto userDto) {
@@ -59,7 +55,11 @@ public class UserServiceImpl implements UserService{
 		List<BookDto> bookDtos = new ArrayList<BookDto>();
 		for(Book book : books) {
 
-			BookDto bookDto = bookService.convertBookToBookDto(book);
+			BookDto bookDto = new BookDto();
+			bookDto.setId(book.getId());
+			bookDto.setBookName(book.getBookName());
+			bookDto.setAuthor(book.getAuthor());
+			bookDto.setIsbn(book.getIsbn());
 			bookDtos.add(bookDto);
 
 		}
