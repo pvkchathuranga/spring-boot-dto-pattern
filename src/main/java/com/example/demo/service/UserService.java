@@ -5,7 +5,7 @@ import com.example.demo.dto.commonModel.ResponseDto;
 
 public interface UserService {
 	
-	ResponseDto createUser(UserDto 	userDto);
+	ResponseDto createUser(UserDto userDto);
 
 	ResponseDto getAllUsers();
 

@@ -1,7 +1,9 @@
 package com.example.demo.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,12 +21,13 @@ public class UserServiceImpl implements UserService{
 
 	@Autowired
 	private UserReopsitory userReopsitory;
-	
+
 	@Override
 	public ResponseDto createUser(UserDto userDto) {
 		ResponseDto responseDto = new ResponseDto();
 		User user = convertUserDtoToUser(userDto);
 		userReopsitory.save(user);
+
 		responseDto.setStatus(true);
 		responseDto.setStatusMessage("Success");
 		responseDto.setData(user);
@@ -36,14 +39,29 @@ public class UserServiceImpl implements UserService{
 	private User convertUserDtoToUser(UserDto userDto) {
 		
 		User user = new User();
-		
 		user.setName(userDto.getName());
 		user.setAddress(userDto.getAddress());
-
+		
+		Set<Book> books = new HashSet<Book>();
+		for(BookDto bookDto : userDto.getBookDtos()) {
+			Book book = convertBookDtoToBook(bookDto);
+			books.add(book);
+		}
+		user.setBooks(books);
 		return user;
 		
 	}
 	
+	private Book convertBookDtoToBook(BookDto bookDto) {
+		Book book = new Book();
+		book.setBookName(bookDto.getBookName());
+		book.setAuthor(bookDto.getAuthor());
+		book.setIsbn(bookDto.getIsbn());
+		return book;
+	}
+
+
+
 	private UserDto convertUserToUserDto(User user) {
 		
 		UserDto userDto = new UserDto();

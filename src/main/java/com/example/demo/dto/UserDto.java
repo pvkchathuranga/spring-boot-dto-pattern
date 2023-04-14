@@ -43,10 +43,5 @@ public class UserDto {
 	public void setBookDtos(List<BookDto> bookDtos) {
 		this.bookDtos = bookDtos;
 	}
-
-
-	
-
-
 	
 }
